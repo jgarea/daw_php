@@ -21,7 +21,10 @@ if (!empty($_REQUEST)) {
   
 }
 ?>  
-<div class="container col-4 mt-3">
+<div class="container col-4 mt-3 bg-light">
+  <div class="pt-2">
+    <h2>Preferencias de usuario</h2>
+  </div>
     <?php
       if (!empty($_POST))
       echo "<p>Preferencia de usuario guardadas</p>";
@@ -126,7 +129,7 @@ if (!empty($_REQUEST)) {
           
         </select>
       </div>
-      <div>
+      <div class="py-3">
           <button class="btn btn-primary" type="submit">Establecer preferencias</button>
           <a name="" id="" class="btn btn-success" href="mostrar.php" role="button">Mostrar preferencias</a>
       </div>
