@@ -1,0 +1,28 @@
+{
+    "name": "juan/tarea05_composer_blade",
+    "description": "Tarea 05 DWES",
+    "type": "project",
+    "license": "GPL",
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juan Eugenio Antón Area",
+            "email": "jgntra@gmail.com"
+        }
+    ],
+    "require": {
+        "philo/laravel-blade": "^3.1",
+        "milon/barcode": "^6.0",
+        "fzaninotto/faker": "^1.5"
+    }
+}
