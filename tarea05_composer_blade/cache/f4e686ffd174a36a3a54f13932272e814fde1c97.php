@@ -1,11 +1,12 @@
-@extends('plantillas.plantilla1')
-@section('titulo')
-    {{$titulo}}
-@endsection
-@section('encabezado')
-    {{$encabezado}}
-@endsection
-@section('contenido')
+<?php $__env->startSection('titulo'); ?>
+    <?php echo e($titulo); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('encabezado'); ?>
+    <?php echo e($encabezado); ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('contenido'); ?>
     <form name="crear" action="crearJugador.php" method="post">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -35,29 +36,30 @@
             </div>
             <div class="form-group col-md-4">
                 <label for="c">Código de barras</label>
-                @if(!isset($code))
+                <?php if(!isset($code)): ?>
                     <input type="text" placeholder="Código de barras" maxlength="13" class="form-control"
                         name="barcode" readonly>
-                @else
-                    <input type="text" value="{{$code}}" maxlength="13" class="form-control"
+                <?php else: ?>
+                    <input type="text" value="<?php echo e($code); ?>" maxlength="13" class="form-control"
                         name="barcode" readonly>
-                @endif
+                <?php endif; ?>
             </div>
         </div>
-        @if(!isset($code))
+        <?php if(!isset($code)): ?>
             <button type="button" onclick="return confirm('Debe generar codigo de barras antes')" class="btn btn-primary mr-3" name="enviar">Crear</button>
-        @else
+        <?php else: ?>
             <button type="submit" class="btn btn-primary mr-3" name="enviar">Crear</button>
-        @endif
+        <?php endif; ?>
         <input type="reset" value="Limpiar" class="btn btn-success mr-3">
         <a href="jugadores.php" class="btn btn-info mr-3">Volver</a>
         <a href="generarCode.php" class="btn btn-secondary">
             <i class="fas fa-barcode"></i>Generar Barcode
         </a>
     </form>
-    @if (isset($error))
+    <?php if(isset($error)): ?>
         <div class="alert alert-danger h-100 mt-3">
-            <p>{{ $error }}</p>
+            <p><?php echo e($error); ?></p>
         </div>
-    @endif
-@endsection
+    <?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('plantillas.plantilla1', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

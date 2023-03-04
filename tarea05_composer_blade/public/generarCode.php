@@ -5,7 +5,7 @@ require '../vendor/autoload.php';
 use Clases\Jugadores;
 use Faker\Factory;
 
-$faker = Factory::create('es_Es');
+$faker = Factory::create('es_ES');
 $jugador = new Jugadores;
 
 //generamos un código y comprobamos que No existe

@@ -63,14 +63,14 @@ class Jugadores extends Conexion{
     }
 
     public function create(){
-        $insert="insert into jugadores(mombre, apellidos, dorsal, posicion, barcode) values(:n, :a, :d, :p, :b)";
+        $insert="insert into jugadores(nombre, apellidos, dorsal, posicion, barcode) values(:n, :a, :d, :p, :b)";
         $stmt    = $this->conexion->prepare($insert);
         try {
-            $stmt->execute([':n' => $this.nombre,
-                            ':a' => $this.apellidos,
-                            ':d' => $this.dorsal,
-                            ':p' => $this.posicion,
-                            ':b' => $this.barcode]);
+            $stmt->execute([':n' => $this->nombre,
+                            ':a' => $this->apellidos,
+                            ':d' => $this->dorsal,
+                            ':p' => $this->posicion,
+                            ':b' => $this->barcode]);
         } catch (PDOException $ex) {
             die("Error al insertar jugadores: ".$ex->getMessage());
         }

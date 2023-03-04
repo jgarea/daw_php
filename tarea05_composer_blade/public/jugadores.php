@@ -3,7 +3,7 @@ session_start();
 require '../vendor/autoload.php';
 
 use Clases\Jugadores;
-use Millon\Barcode\DNS1D;
+use Milon\Barcode\DNS1D;
 use Philo\Blade\Blade;
 
 $views = '../views';

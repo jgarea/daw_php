@@ -14,7 +14,7 @@ $nom    = trim($_POST['nombre']);
 $ape    = trim($_POST['apellidos']);
 $pos    = $_POST['posicion'];
 $dorsal = (int)$_POST['dorsal'];
-$nom    = $_POST['barcode'];
+$cod    = $_POST['barcode'];
 
 if (strlen($nom)==0 || strlen($ape)==0) {
     error("Nombre y Apellidos deben contener algún carácter válido!!!");
