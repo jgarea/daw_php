@@ -1,0 +1,203 @@
+# Conexión con clases sin composer
+```php
+<?php
+
+//namespace Clases;
+
+//use PDO;
+//use PDOException;
+class Conexion
+{
+    private $host;
+    private $db;
+    private $user;
+    private $pass;
+    private $dsn;
+    protected $conexion;
+
+    public function __construct()
+    {
+        $this->host = "localhost"; 
+        $this->db = "practicaunidad5"; //Cambiar db usuario y pass
+        $this->user = "gestor";
+        $this->pass = "secreto";
+        $this->dsn = "mysql:host={$this->host};dbname={$this->db};charset=utf8mb4";
+        $this->crearConexion();
+    }
+
+    public function crearConexion()
+    {
+        try {
+            $this->conexion = new PDO($this->dsn, $this->user, $this->pass);
+            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $ex) {
+            die("Error en la conexión: mensaje: " . $ex->getMessage());
+        }
+        return $this->conexion;
+    }
+}
+
+//Clase que vas usar para guardar los datos en la base de datos y demas consultas, modificaciones, eliminar etc
+class Jugadores extends Conexion{
+    private $id;
+    private $nombre;
+    private $apellidos;
+    private $dorsal;
+    private $posicion;
+    private $barcode;
+
+    public function __construct(){
+        parent::__construct();
+    }
+
+    public function recuperarJugadores(){
+        $consulta="select * from jugadores order by posicion, apellidos";
+        $stmt    = $this->conexion->prepare($consulta);
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            die("Error al recuperar los jugadores: ".$ex->getMessage());
+        }
+        $this->conexion=null;
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function existeDorsal($d){
+        $consulta="select * from jugadores where dorsal=:d";
+        $stmt    = $this->conexion->prepare($consulta);
+        try {
+            $stmt->execute([':d' => $d]);
+        } catch (PDOException $ex) {
+            die("Error al comprobar dorsal: ".$ex->getMessage());
+        }
+        if ($stmt->rowCount()==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public function existeBarcode($b){
+        $consulta="select * from jugadores where barcode=:b";
+        $stmt    = $this->conexion->prepare($consulta);
+        try {
+            $stmt->execute([':b' => $b]);
+        } catch (PDOException $ex) {
+            die("Error al comprobar código de barras: ".$ex->getMessage());
+        }
+        if ($stmt->rowCount()==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    public function create(){
+        $insert="insert into jugadores(nombre, apellidos, dorsal, posicion, barcode) values(:n, :a, :d, :p, :b)";
+        $stmt    = $this->conexion->prepare($insert);
+        try {
+            $stmt->execute([':n' => $this->nombre,
+                            ':a' => $this->apellidos,
+                            ':d' => $this->dorsal,
+                            ':p' => $this->posicion,
+                            ':b' => $this->barcode]);
+        } catch (PDOException $ex) {
+            die("Error al insertar jugadores: ".$ex->getMessage());
+        }
+    }
+
+    public function borrarTodo(){
+        $insert="delete from jugadores";
+        $stmt    = $this->conexion->prepare($insert);
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            die("Error al borrar jugadores: ".$ex->getMessage());
+        }
+    }
+
+    public function tieneDatos(){
+        $consulta="select * from jugadores";
+        $stmt    = $this->conexion->prepare($consulta);
+        try {
+            $stmt->execute();
+        } catch (PDOException $ex) {
+            die("Error al comprobar si hay datos: ".$ex->getMessage());
+        }
+        if ($stmt->rowCount()==0) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /**
+     * Set the value of id
+     *
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;  
+    }
+
+    /**
+     * Set the value of nombre
+     *
+     */ 
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;  
+    }
+
+    /**
+     * Set the value of apellidos
+     *
+     */ 
+    public function setApellidos($apellidos)
+    {
+        $this->apellidos = $apellidos;  
+    }
+
+    /**
+     * Set the value of dorsal
+     *
+     */ 
+    public function setDorsal($dorsal)
+    {
+        $this->dorsal = $dorsal;  
+    }
+
+    /**
+     * Set the value of posicion
+     *
+     */ 
+    public function setPosicion($posicion)
+    {
+        $this->posicion = $posicion;  
+    }
+
+    /**
+     * Set the value of barcode
+     *
+     */ 
+    public function setBarcode($barcode)
+    {
+        $this->barcode = $barcode;  
+    }
+}
+?>
+```
+## Probar el index.php si funciona la conexión 
+```php
+<?php
+include "Jugadores.php";
+
+$ju=new Jugadores();
+if($ju->tieneDatos())
+    echo "1";
+$ju=null;
+```
