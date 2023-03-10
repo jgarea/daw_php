@@ -1,0 +1,26 @@
+{
+    "name": "juan/blade",
+    "description": "descripcion",
+    "type": "project",
+    "license": "GPL",
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/" 
+        }
+    },
+    "authors": [
+        {
+            "name": "Juan Eugenio Antón Area",
+            "email": "jgntra@gmail.com"
+        }
+    ],
+    "require": {
+        "philo/laravel-blade": "^3.1"
+    }
+}

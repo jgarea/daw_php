@@ -1,44 +1,10 @@
-# Conexión con clases sin composer
-## Archivo Jugadores.php
-```php
 <?php
 
-//namespace Clases;
+namespace Clases;
 
-//use PDO;
-//use PDOException;
-class Conexion
-{
-    private $host;
-    private $db;
-    private $user;
-    private $pass;
-    private $dsn;
-    protected $conexion;
+use PDO;
+use PDOException;
 
-    public function __construct()
-    {
-        $this->host = "localhost"; 
-        $this->db = "practicaunidad5"; //Cambiar db usuario y pass
-        $this->user = "gestor";
-        $this->pass = "secreto";
-        $this->dsn = "mysql:host={$this->host};dbname={$this->db};charset=utf8mb4";
-        $this->crearConexion();
-    }
-
-    public function crearConexion()
-    {
-        try {
-            $this->conexion = new PDO($this->dsn, $this->user, $this->pass);
-            $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        } catch (PDOException $ex) {
-            die("Error en la conexión: mensaje: " . $ex->getMessage());
-        }
-        return $this->conexion;
-    }
-}
-
-//Clase que vas usar para guardar los datos en la base de datos y demas consultas, modificaciones, eliminar etc
 class Jugadores extends Conexion{
     private $id;
     private $nombre;
@@ -136,69 +102,34 @@ class Jugadores extends Conexion{
         }
     }
 
-    /**
-     * Set the value of id
-     *
-     */ 
+     
     public function setId($id)
     {
         $this->id = $id;  
     }
 
-    /**
-     * Set the value of nombre
-     *
-     */ 
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;  
     }
 
-    /**
-     * Set the value of apellidos
-     *
-     */ 
     public function setApellidos($apellidos)
     {
         $this->apellidos = $apellidos;  
     }
 
-    /**
-     * Set the value of dorsal
-     *
-     */ 
     public function setDorsal($dorsal)
     {
         $this->dorsal = $dorsal;  
     }
 
-    /**
-     * Set the value of posicion
-     *
-     */ 
     public function setPosicion($posicion)
     {
         $this->posicion = $posicion;  
     }
 
-    /**
-     * Set the value of barcode
-     *
-     */ 
     public function setBarcode($barcode)
     {
         $this->barcode = $barcode;  
     }
 }
-?>
-```
-## Probar el index.php si funciona la conexión con la Clase Jugadores
-```php
-<?php
-include "Jugadores.php";
-
-$ju=new Jugadores();
-if($ju->tieneDatos())
-    echo "1";
-$ju=null;
-```
