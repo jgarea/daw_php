@@ -48,6 +48,12 @@ POR
     "description": "descripcion",
     "type": "project",
     "license": "GPL",
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
     "autoload": {
         "psr-4": {
             "Clases\\": "src/"
