@@ -1,0 +1,27 @@
+{
+    "name": "juan/tarea06_soap",
+    "description": "descripcion",
+    "type": "project",
+    "license": "GPL",
+    "config": {
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Clases\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juan Eugenio Antón Area",
+            "email": "jgntra@gmail.com"
+        }
+    ],
+    "require": {
+        "wsdl2phpgenerator/wsdl2phpgenerator": "^3.4",
+        "php2wsdl/php2wsdl": "^0.6.1"
+    }
+}
