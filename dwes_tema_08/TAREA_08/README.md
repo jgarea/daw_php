@@ -41,3 +41,43 @@ function vocultar($id) {
     return $resp;
 }
 ```
+
+
+# funciones útiles
+
+Validar un número con sin signo
+```regexp
+^[+-]?\d+(\.\d+)?$
+```
+``explode()``
+
+ Esta función divide un string en partes utilizando un delimitador y devuelve un array con esas partes. 
+
+``implode()``
+
+Esta función une los elementos de un array en un solo string, utilizando un separador opcional. 
+
+``preg_match()``
+```php
+$regex = '/^\d{3}-\d{3}-\d{4}$/'; // Expresión regular para validar un número de teléfono en el formato XXX-XXX-XXXX
+$phone = '123-456-7890';
+
+if (preg_match($regex, $phone)) {
+    echo "El número de teléfono es válido.";
+} else {
+    echo "El número de teléfono no es válido.";
+}
+```
+``preg_split()``
+
+— Divide un string mediante una expresión regular
+
+
+```php
+preg_split(
+    string $pattern,
+    string $subject,
+    int $limit = -1,
+    int $flags = 0
+): array
+```
