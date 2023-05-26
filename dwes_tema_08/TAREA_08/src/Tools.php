@@ -48,6 +48,12 @@ function ordenarEnvios($puntos, $id) {
     
     return $resp;
 }
+
+/**
+ * Función que elimina la sesión con la id donde está almacenda las tareas 
+ * y selecciona la etiqueta con la id indicada y pone en el campo innerHTML la cadena vacia
+ * para ocultar las tareas hasta que se presione de nuevo ordenar.
+ */
 function vocultar($id) {
     $resp = jaxon()->newResponse();
     unset($_SESSION[$id]);

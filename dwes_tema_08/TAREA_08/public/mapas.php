@@ -3,7 +3,7 @@
 // Learn -> Bing Maps -> Bing Maps V8 Web Control
 // https://learn.microsoft.com/en-us/bingmaps/v8-web-control/?toc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2Fbingmaps%2Fv8-web-control%2Ftoc.json&bc=https%3A%2F%2Flearn.microsoft.com%2Fen-us%2FBingMaps%2Fbreadcrumb%2Ftoc.json
 
-
+//Si no esta definido id redirige a repartos.php
 if (!isset($_GET['lat'])) {
     header('Location: repartos.php');
     die();

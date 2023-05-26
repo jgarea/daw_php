@@ -1,4 +1,5 @@
 <?php
+//Si no esta definido id redirige a repartos.php
 if (!isset($_GET['id'])) {
     header('Location: repartos.php');
     die();

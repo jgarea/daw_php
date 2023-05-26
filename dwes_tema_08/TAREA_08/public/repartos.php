@@ -187,6 +187,7 @@ include '../src/Tools.php';
                  echo "<button class='btn btn-success mr-2 btn-sm' onclick=\"ordenarEnvios('{$lista->getId()}')\"><i class='fas fa-sort mr-1'></i>ordenar</button>\n";
 
             //echo "<a href='repartos.php?action=oce&idlt={$lista->getId()}' class='btn btn-primary mr-2 btn-sm'><i class='fas fa-eye-slash mr-1'></i></i>Ocultar orden</a>\n";
+            //Cambiamos la funcionalidad para que al darle click llame a la función ocultar pasandole la id, que lo realice con una petición asíncrona con jaxon
             echo "<button class='btn btn-primary mr-2 btn-sm' onClick=\"ocultar({$lista->getId()})\"><i class='fas fa-eye-slash mr-1'></i></i>Ocultar orden</button>\n";
 
             echo "<a href='repartos.php?action=blt&idlt={$lista->getId()}' class='btn btn-danger btn-sm' onclick=\"return confirm('¿Borrar Lista?')\"><i class='fas fa-trash mr-1'></i>Borrar</a>\n";
@@ -196,6 +197,7 @@ include '../src/Tools.php';
 
             $tareas = getTareas($lista->getId());
 
+            //Para cada tarea, la muestra con el titulo y las coordenadas, y añade el boton de borrar y mapa
             foreach ($tareas->getItems() as $tarea) {
                 $c   = explode(",", $tarea->getNotes());
                 $lat = $c[0];
@@ -213,6 +215,7 @@ include '../src/Tools.php';
             echo "</table>\n";
 
             if (isset($_SESSION[$lista->getId()])) {
+                //Añadimos un id con la lista para poder seleccionarlo
                 echo "<form name='1' action='rutas.php' method='POST' id=\"".$lista->getId()."\">";
 
                 //el primer waypoint de la ruta será el almacen.

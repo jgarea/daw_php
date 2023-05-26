@@ -1,3 +1,7 @@
+/**
+ * Funcion que devuelve si una fecha es menor que otra
+ * @returns 
+ */
 function validarFecha() {
     let fecha = document.getElementById('title').value;
 
@@ -20,6 +24,10 @@ function validarFecha() {
     return true;
 }
 
+/**
+ * LLama a la función getCoordenadas de jaxon
+ * @returns 
+ */
 function getCoordenadas() {
     let dir = document.getElementById('dir').value;
 
@@ -27,7 +35,10 @@ function getCoordenadas() {
     return true;
 }
 
-
+/**
+ * LLama a la funcion ordenar envios de jaxon
+ * @param {*} id 
+ */
 function ordenarEnvios(id) {
     var puntos = $("#t_" + id + " input:hidden").map(function () {
         return this.value;
@@ -36,6 +47,11 @@ function ordenarEnvios(id) {
     jaxon_ordenarEnvios(puntos, id);
 }
 
+/**
+ * Recoge los datos y redirige a la url que contruimos en la funcion
+ * @param {*} datosRespuesta 
+ * @returns 
+ */
 function obtuvimosDatos(datosRespuesta) {
     if (datosRespuesta['respuesta'] == "404" ) {
         alert("Servicio para ordenar Rutas de Bing Maps no disponible temporalmente");
@@ -57,7 +73,10 @@ function obtuvimosDatos(datosRespuesta) {
     window.location = url;
 }
 
-
+/**
+ * Comprueba que se seleccione un proudcto y que la latitud tiene algún dato
+ * @returns 
+ */
 function semaforo() {
     var latitud = document.getElementById('lat').value
     var pro     = document.getElementById("pro").value
@@ -70,6 +89,10 @@ function semaforo() {
     return true;
 }
 
+/**
+ * Función que llama a la función jaxon para ocultar la lista de los envios.
+ * @param {*} id 
+ */
 function ocultar(id){
     jaxon_vocultar(id.id);
 }

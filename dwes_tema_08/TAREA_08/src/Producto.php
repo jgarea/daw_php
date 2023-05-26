@@ -1,6 +1,8 @@
 <?php
 require 'Conexion.php';
-
+/**
+ * Clase que trabaja con la tabla producto de la base de datos
+ */
 class Producto extends Conexion
 {
     private $id;

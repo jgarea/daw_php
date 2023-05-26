@@ -1,6 +1,8 @@
 <?php
 
-
+/**
+ * Clase que se usa para establecer la conexión con la base de datos
+ */
 class Conexion
 {
     protected static $conexion;

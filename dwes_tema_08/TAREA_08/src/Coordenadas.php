@@ -5,6 +5,9 @@
 //   -> Elevation
 //   -> Routes
 
+/**
+ * Clase que trabaja con la API bing maps
+ */
 class Coordenadas  {
    
     private $key = "";  
